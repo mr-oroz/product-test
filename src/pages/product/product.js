@@ -3,12 +3,13 @@ import { DataContext } from "../ProductProvider";
 import './product.scss'
 import Rouble from "../../assets/images/ruble-sign-solid.svg"
 import Cart from "../../assets/images/cart.svg"
+import { Link } from 'react-router-dom';
 
 function Product() {
     const value = useContext(DataContext)
     const [products] = value.products;
     const addCart = value.addCart
-
+ 
     return (
         <div className="product">
             {
@@ -18,14 +19,18 @@ function Product() {
                         <div className='product_status-container'>
                             <span className='product_status'>Наличие</span>
                         </div>
-                        <div className="product_photo">
-                            <a href="#" className="url--link product_link">
-                                <img src={product.primaryImageUrl} />
-                            </a>
-                        </div>
-                        <div className='product_description'>
-                            <a href="#" className="product_link">{product.title}</a>
-                        </div>
+                        <Link to={`/product/${product.productId}`}>
+                            <div className="product_photo">
+                                <a href="#" className="url--link product_link">
+                                    <img src={product.primaryImageUrl} />
+                                </a>
+                            </div>
+                        </Link>
+                        <Link to={`/product/${product.productId}`}>
+                            <div className='product_description'>
+                                <a href="#" className="product_link">{product.title}</a>
+                            </div>
+                        </Link>
                         <div className="product_tags">
                             <p className='product_text'>Могут понадобиться:</p>
                             <a href="#" className="product_assocProducts">{product.assocProducts}</a>
@@ -75,10 +80,10 @@ function Product() {
                                     <span className='product_down product_arrow'></span>
                                 </div>
                             </div>
-                            <span className='product_btn btn-cart'>
-                                <img src={Cart} alt=""/>
-                                <span>В корзину</span>
-                            </span>
+                                <span onClick={() => addCart(product.productId)} className='product_btn btn-cart'>
+                                    <img src={Cart} alt="" />
+                                    <span>В корзину</span>
+                                </span>
                         </div>
                     </div>
                 ))
