@@ -9,9 +9,15 @@ function Main() {
     return (
         <div className='main'>
             <Switch>
-                <Route exact path="/product" component={Product} />
-                <Route exact path='/product/:id' component={Details} />
-                <Route path="/cart" component={Cart} />
+                <Route exact path={'/product'}>
+                    <Product />
+                </Route>
+              <Route  exact path={'/product/:id'}>
+                  <Details/>
+              </Route>
+              <Route exact path={'/cart'}>
+                  <Cart/>
+              </Route>
             </Switch>
         </div>
     )

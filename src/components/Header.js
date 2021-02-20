@@ -27,14 +27,14 @@ export default function Header() {
             </div>
 
             <div className="logo">
-                <h1><Link to="/products">Citizen</Link></h1>
+                <h1><Link to="/product">Citizen</Link></h1>
             </div>
             <ul style={styleMenu}>
-                <li className='item'><Link to="/">Home</Link></li>
-                <li className='item'><Link to="/product">Products</Link></li>
-                <li className='item'><Link to="/">About</Link></li>
-                <li className='item'><Link to="/">Contact</Link></li>
-                <li className='item'><Link to="/">Login / Register</Link></li>
+                <li className='item'><Link to="/">Главная</Link></li>
+                <li className='item'><Link to="/product">Товары</Link></li>
+                <li className='item'><Link to="/">О нас</Link></li>
+                <li className='item'><Link to="/">Контакты</Link></li>
+                <li className='item'><Link to="/">Войти / Регистрация</Link></li>
                 <li onClick={toggleMenu} className='item'>
                     <img src={Close} alt="" width="30" className="menu" />
                 </li>
