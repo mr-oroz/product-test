@@ -52,7 +52,6 @@ export default function Cart() {
     if (cart.length === 0)
         return <h2 style={{ textAlign: "center", fontSize: "5rem" }}>
             Корзина пуста</h2>
-
     return (
         <>
             <div className="product">
