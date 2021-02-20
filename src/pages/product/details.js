@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { DataContext } from '../ProductProvider'
 import { Link } from 'react-router-dom'
 import Rouble from "../../assets/images/ruble-sign-solid.svg"
-import Cart from "../../assets/images/cart.svg"
 import './product.scss'
 
 export default function Details() {
@@ -11,14 +10,14 @@ export default function Details() {
     const value = useContext(DataContext)
     const [products] = value.products
     const addCart = value.addCart
-    const details = products.filter((product) => {
+    const details = products[0].filter((product, index) => {
         return product.productId === id
     })
-    console.log (products)
     return (
+
         <div className="product">
             {
-                details[0].map(product => (
+                details.map(product => (
                     <div key={product.productId} className="product_horizantal">
                         <span className="product_code">Код: {product.code}</span>
                         <div className='product_status-container'>
@@ -74,18 +73,8 @@ export default function Details() {
                             </div>
                         </div>
                         <div className='product_count'>
-                            <div className='product_count-wrapper'>
-                                <div className='product_stepper'>
-                                    <input className='product_input' type="text" value='1' />
-                                    <span className='product_up product_arrow'></span>
-                                    <span className='product_down product_arrow'></span>
-                                </div>
-                            </div>
-                            <Link to="/cart" onClick={() => addCart(product.productId)}>
-                                <span onClick={() => addCart(product.productId)} className='product_btn btn-cart'>
-                                    <img src={Cart} alt="" />
-                                    <span>В корзину</span>
-                                </span>
+                            <Link to="/cart" onClick={() => addCart(product.productId)} className='product_btn btn-cart'>
+                                <span>В корзину</span>
                             </Link>
                         </div>
                     </div>

@@ -2315,7 +2315,7 @@ export const ProductProvider = (props) => {
             return item.productId !== id
         })
         if(check){
-            const data = products.filter(product =>{
+            const data = products[0].filter(product =>{
                 return product.productId === id
             })
             setCart([...cart, ...data])
