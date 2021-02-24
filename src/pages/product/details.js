@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { useParams } from 'react-router-dom'
+
 import { DataContext } from '../ProductProvider'
-import { Link } from 'react-router-dom'
+import { Link,useParams } from 'react-router-dom'
 import Rouble from "../../assets/images/ruble-sign-solid.svg"
 import './product.scss'
 
 export default function Details() {
+    const [selt,setSelt] = useState(true)
     const { id } = useParams();
     const value = useContext(DataContext)
     const [products] = value.products
@@ -37,23 +38,23 @@ export default function Details() {
                         </div>
                         <div className='product_units'>
                             <div className="product_wrapper">
-                                <div className="product_select product_active">
+                                <div onClick={()=>{setSelt(true)}} className={"product_select"+(selt?" product_active":"")}>
                                     <p>За {product.unitAlt}</p>
                                 </div>
-                                <div className="product_select">
+                                <div onClick={()=>{setSelt(false)}} className={"product_select"+(selt?"":" product_active")}>
                                     <p>За {product.unitFull}</p>
                                 </div>
                             </div>
                         </div>
                         <p className="product_price-card">
                             <span className='product_card-text'>По Карте <br />Карте</span>
-                            <span className='product_gold-price'>{product.priceGold}</span>
+                            <span className='product_gold-price'>{selt?product.priceGoldAlt:product.priceRetailAlt}</span>
                             <span className='product_rouble'>
                                 <img className='product_svg' src={Rouble} />
                             </span>
                         </p>
                         <p className="product_price-default">
-                            <span className='product_retail-price'>{product.priceRetail}</span>
+                            <span className='product_retail-price'>{selt?product.priceRetailAlt:product.priceGoldAlt}</span>
                             <span className='product_rouble'>
                                 <img style={{ color: "#a7a7a7" }} className='product_svg' src={Rouble} />
                             </span>
