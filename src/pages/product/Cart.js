@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, Fragment } from 'react'
 import { DataContext } from '../ProductProvider'
 import { Link } from 'react-router-dom'
 import Rouble from "../../assets/images/ruble-sign-solid.svg"
@@ -7,18 +7,10 @@ export default function Cart() {
     const value = useContext(DataContext)
     const [selt, setSelt] = useState(true)
     const [cart, setCart] = value.cart;
-    const [total, setTotal] = useState(0)
+
     console.log(cart)
 
-    useEffect(() => {
-        const getTotal = () => {
-            const res = cart.reduce((prev, item) => {
-                return prev + (item.priceGold * item.unitRatio)
-            }, 0)
-            setTotal(res)
-        }
-        getTotal()
-    }, [cart])
+
 
 
     const reduction = id => {
@@ -50,11 +42,16 @@ export default function Cart() {
     }
 
 
-    if (cart.length === 0)
-        return <h2 style={{ textAlign: "center", fontSize: "5rem" }}>
-            Корзина пуста</h2>
+    if (cart.length === 0) {
+        return (
+            <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Корзина пуста</h2>
+        )
+    }
+    const total = cart.reduce((prev, item) => {
+        return prev + (selt ? item.priceGoldAlt : item.priceRetail) * item.unitRatio
+    }, 0)
     return (
-        <>
+        <Fragment>
             <div className="product">
                 {
                     cart.map(product => (
@@ -134,7 +131,7 @@ export default function Cart() {
             <div className="total">
                 <h3>Total: {total} рубль</h3>
             </div>
-        </>
+        </Fragment>
     )
 }
 

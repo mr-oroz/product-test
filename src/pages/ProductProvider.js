@@ -2308,6 +2308,13 @@ export const ProductProvider = (props) => {
         ]
     ])
 
+
+    cartitem = {
+        product:{},
+        count:1,
+        selt:true,
+    }
+
     const [cart, setCart] = useState([])
 
     const addCart = (id) =>{
@@ -2323,6 +2330,7 @@ export const ProductProvider = (props) => {
             alert("The product has been added to cart.")
         }
     }
+    
 
     useEffect(() =>{
        const dataCart =  JSON.parse(localStorage.getItem('dataCart'))
