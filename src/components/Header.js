@@ -27,7 +27,7 @@ export default function Header() {
             </div>
 
             <div className="logo">
-                <h1><Link to="/product">Citizen</Link></h1>
+                <h1><Link to="/product">СТРОЙ</Link></h1>
             </div>
             <ul style={styleMenu}>
                 <li className='item'><Link to="/">Главная</Link></li>
