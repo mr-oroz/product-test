@@ -2331,7 +2331,6 @@ export const ProductProvider = (props) => {
         }
     }
     
-
     useEffect(() =>{
        const dataCart =  JSON.parse(localStorage.getItem('dataCart'))
        if(dataCart) setCart(dataCart)
