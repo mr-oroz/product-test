@@ -5,7 +5,6 @@ import Rouble from "../../assets/images/ruble-sign-solid.svg"
 
 export default function Cart() {
     const value = useContext(DataContext)
-    const [selt, setSelt] = useState(true)
     const [cart, setCart] = value.cart;
 
     console.log(cart)
@@ -14,20 +13,16 @@ export default function Cart() {
 
 
     const reduction = id => {
-        cart.forEach(item => {
-            if (item.productId === id) {
-                item.unitRatio === 1 ? item.unitRatio = 1 : item.unitRatio -= 1;
-            }
-        })
-        setCart([...cart])
+        const newCart = [...cart];
+        const cartItem = newCart.find(({product})=>product.productId===id)
+        cartItem.count = cartItem.count === 1?1: cartItem.count-1
+        setCart(newCart)
     }
     const increase = id => {
-        cart.forEach(item => {
-            if (item.productId === id) {
-                item.unitRatio += 1;
-            }
-        })
-        setCart([...cart])
+        const newCart = [...cart];
+        const cartItem = newCart.find(({product})=>product.productId===id)
+        cartItem.count +=1
+        setCart(newCart)
     }
 
     const removeProduct = id => {
@@ -41,20 +36,26 @@ export default function Cart() {
         }
     }
 
+    const productSelt = (id,selt) =>() =>{
+        const newCart = [...cart];
+        newCart.find(({product})=>product.productId===id).selt = selt
+        setCart(newCart)
+    }
+
 
     if (cart.length === 0) {
         return (
             <h2 style={{ textAlign: "center", fontSize: "5rem" }}>Корзина пуста</h2>
         )
     }
-    const total = cart.reduce((prev, item) => {
-        return prev + (selt ? item.priceGoldAlt : item.priceRetail) * item.unitRatio
+    const total = cart.reduce((prev, {product,selt,count}) => {
+        return prev + (selt ? product.priceGoldAlt : product.priceRetailAlt) * count
     }, 0)
     return (
         <Fragment>
             <div className="product">
                 {
-                    cart.map(product => (
+                    cart.map(({product,selt,count}) => (
                         <div key={product.productId} className="product_horizantal">
                             <span className="product_code">Код: {product.code}</span>
                             <div className='product_status-container'>
@@ -74,10 +75,10 @@ export default function Cart() {
                             </div>
                             <div className='product_units'>
                                 <div className="product_wrapper">
-                                    <div onClick={() => { setSelt(true) }} className={"product_select" + (selt ? " product_active" : "")}>
+                                    <div onClick={ productSelt(product.productId,true) } className={"product_select" + (selt ? " product_active" : "")}>
                                         <p>За {product.unitAlt}</p>
                                     </div>
-                                    <div onClick={() => { setSelt(false) }} className={"product_select" + (selt ? "" : " product_active")}>
+                                    <div onClick={ productSelt(product.productId,false) } className={"product_select" + (selt ? "" : " product_active")}>
                                         <p>За {product.unitFull}</p>
                                     </div>
                                 </div>
@@ -112,7 +113,7 @@ export default function Cart() {
                             <div className='product_count'>
                                 <div className='product_count-wrapper'>
                                     <div className='product_stepper'>
-                                        <input className='product_input' type="text" value={product.unitRatio} />
+                                        <input className='product_input' type="text" value={count} />
                                         <span className='product_up product_arrow' onClick={() => increase(product.productId)}></span>
                                         <span className='product_down product_arrow' onClick={() => reduction(product.productId)}></span>
                                     </div>

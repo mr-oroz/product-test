@@ -2309,23 +2309,24 @@ export const ProductProvider = (props) => {
     ])
 
 
-    cartitem = {
-        product:{},
-        count:1,
-        selt:true,
-    }
+
 
     const [cart, setCart] = useState([])
 
     const addCart = (id) =>{
         const check = cart.every(item =>{
-            return item.productId !== id
+            return item.product.productId !== id
         })
         if(check){
-            const data = products[0].filter(product =>{
+            const data = products[0].find(product =>{
                 return product.productId === id
             })
-            setCart([...cart, ...data])
+            const cartItem = {
+                product: {...data},
+                count:1,
+                selt:true,
+            }
+            setCart([...cart, cartItem])
         }else{
             alert("The product has been added to cart.")
         }
