@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, Fragment } from 'react'
+import React, { useContext, Fragment } from 'react'
 import { DataContext } from '../ProductProvider'
 import { Link } from 'react-router-dom'
 import Rouble from "../../assets/images/ruble-sign-solid.svg"
