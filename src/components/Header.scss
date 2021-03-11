@@ -42,7 +42,7 @@
   }
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 724px){
     .header{
       justify-content: space-between;
       ul{
@@ -64,7 +64,7 @@
         display: block;
         cursor: pointer;
       }
-      .menu{
+      ul li .menu{
         position: absolute;
         top: 20px;
         right: 20px;
