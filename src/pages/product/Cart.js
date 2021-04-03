@@ -1,6 +1,6 @@
-import React, {useContext, Fragment} from 'react'
-import {DataContext} from '../ProductProvider'
-import {Link} from 'react-router-dom'
+import React, { useContext, Fragment } from 'react'
+import { DataContext } from '../ProductProvider'
+import { Link } from 'react-router-dom'
 import Rouble from "../../assets/images/ruble-sign-solid.svg"
 
 export default function Cart() {
@@ -12,13 +12,13 @@ export default function Cart() {
 
     const reduction = id => {
         const newCart = [...cart];
-        const cartItem = newCart.find(({product}) => product.productId === id)
+        const cartItem = newCart.find(({ product }) => product.productId === id)
         cartItem.count = cartItem.count === 1 ? 1 : cartItem.count - 1
         setCart(newCart)
     }
     const increase = id => {
         const newCart = [...cart];
-        const cartItem = newCart.find(({product}) => product.productId === id)
+        const cartItem = newCart.find(({ product }) => product.productId === id)
         cartItem.count += 1
         setCart(newCart)
     }
@@ -29,10 +29,9 @@ export default function Cart() {
             setCart([...cart.slice(0, index), ...cart.slice(index+1)])
         }
     }
-
     const productSelt = (id, selt) => () => {
         const newCart = [...cart];
-        newCart.find(({product}) => product.productId === id).selt = selt
+        newCart.find(({ product }) => product.productId === id).selt = selt
         setCart(newCart)
     };
 
@@ -42,14 +41,14 @@ export default function Cart() {
             <h2 style={{textAlign: "center", fontSize: "5rem"}}>Корзина пуста</h2>
         )
     }
-    const total = cart.reduce((prev, {product, selt, count}) => {
+    const total = cart.reduce((prev, { product, selt, count }) => {
         return prev + (selt ? product.priceGoldAlt : product.priceRetailAlt) * count
     }, 0)
     return (
         <Fragment>
             <div className="product">
                 {
-                    cart.map(({product, selt, count}) => (
+                    cart.map(({ product, selt, count }) => (
                         <div key={product.productId} className="product_horizantal">
                             <span className="product_code">Код: {product.code}</span>
                             <div className='product_status-container'>
@@ -69,12 +68,11 @@ export default function Cart() {
                             </div>
                             <div className='product_units'>
                                 <div className="product_wrapper">
-                                    <div onClick={productSelt(product.productId, true)}
-                                         className={"product_select" + (selt ? " product_active" : "")}>
+                                    <div onClick={productSelt(product.productId, true)} className={"product_select" + (selt ? " product_active" : "")}>
                                         <p>За {product.unitAlt}</p>
                                     </div>
-                                    <div onClick={productSelt(product.productId, false)}
-                                         className={"product_select" + (selt ? "" : " product_active")}>
+                                    <div onClick={productSelt(product.productId, false)} className={"product_select" + (selt ? "" : " product_active")}>
+
                                         <p>За {product.unitFull}</p>
                                     </div>
                                 </div>

@@ -1,10 +1,10 @@
-  
-import React, {useState, useContext} from 'react'
+
+import React, { useState, useContext } from 'react'
 import Menu from '../assets/images/bars-solid.svg'
 import Close from '../assets/images/times-solid.svg'
 import Cart from '../assets/images/cart-plus-solid.svg'
-import {Link} from 'react-router-dom'
-import {DataContext} from '../pages/ProductProvider'
+import { Link } from 'react-router-dom'
+import { DataContext } from '../pages/ProductProvider'
 import "./Header.scss"
 
 export default function Header() {
@@ -12,7 +12,7 @@ export default function Header() {
     const value = useContext(DataContext)
     const [cart] = value.cart
 
-    const toggleMenu = () =>{
+    const toggleMenu = () => {
         setMenu(!menu)
     }
 
@@ -46,6 +46,6 @@ export default function Header() {
                     <img src={Cart} alt="" width="30" />
                 </Link>
             </div>
-      </header>
+        </header>
     )
 }
