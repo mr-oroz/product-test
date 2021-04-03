@@ -25,12 +25,8 @@ export default function Cart() {
 
     const removeProduct = id => {
         if (window.confirm("Do you want to delete this product?")) {
-            cart.forEach((item, index) => {
-                if (item.productId === id) {
-                    cart.splice(index, 1)
-                }
-            })
-            setCart([...cart])
+            const index = cart.findIndex(item => item.id !== id)
+            setCart([...cart.slice(0, index), ...cart.slice(index+1)])
         }
     }
 
@@ -117,9 +113,11 @@ export default function Cart() {
                                     <div className='product_stepper'>
                                         <input className='product_input' type="text" value={count}/>
                                         <span className='product_up product_arrow'
-                                              onClick={() => increase(product.productId)}></span>
+                                              onClick={() => increase(product.productId)}>
+                                        </span>
                                         <span className='product_down product_arrow'
-                                              onClick={() => reduction(product.productId)}></span>
+                                              onClick={() => reduction(product.productId)}>
+                                        </span>
                                     </div>
                                 </div>
                                 <Link>
