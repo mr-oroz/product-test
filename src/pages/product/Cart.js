@@ -6,10 +6,6 @@ import Rouble from "../../assets/images/ruble-sign-solid.svg"
 export default function Cart() {
     const value = useContext(DataContext)
     const [cart, setCart] = value.cart;
-
-    console.log(cart)
-
-
     const reduction = id => {
         const newCart = [...cart];
         const cartItem = newCart.find(({ product }) => product.productId === id)
@@ -22,7 +18,6 @@ export default function Cart() {
         cartItem.count += 1
         setCart(newCart)
     }
-
     const removeProduct = id => {
         if (window.confirm("Do you want to delete this product?")) {
             const index = cart.findIndex(item => item.id !== id)
@@ -34,8 +29,6 @@ export default function Cart() {
         newCart.find(({ product }) => product.productId === id).selt = selt
         setCart(newCart)
     };
-
-
     if (cart.length === 0) {
         return (
             <h2 style={{textAlign: "center", fontSize: "5rem"}}>Корзина пуста</h2>

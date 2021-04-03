@@ -105,8 +105,6 @@
 
   &_wrapper {
     display: table;
-    width: 100%;
-    margin-top: 30px;
   }
 
   &_active {
@@ -408,7 +406,6 @@
       height: 545px;
       margin: 0 15px 15px;
     }
-
     &_code,
     &_status-container {
       position: static;
