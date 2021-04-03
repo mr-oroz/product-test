@@ -58,6 +58,7 @@
       vertical-align: middle;
     }
   }
+
   a {
     text-decoration: none;
     color: #000;
@@ -96,10 +97,10 @@
 
   &_units {
     position: relative;
-    right: 12px;
-    top: 95px;
+    top: 110px;
     bottom: inherit;
     z-index: 9;
+    left: 79px;
   }
 
   &_wrapper {
