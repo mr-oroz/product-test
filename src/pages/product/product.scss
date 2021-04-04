@@ -454,9 +454,8 @@
 
     &_wrapper {
       position: absolute;
-      top: 30px;
+      top: 50px;
       right: 10px;
-      display: table;
       width: 100%;
     }
   }
@@ -465,7 +464,8 @@
 @media screen and (max-width: 990px) {
   .total {
     position: absolute;
-    top: 70%;
-    left: 3%;
+    top: 109%;
+    left: 31%;
+    font-size: 11px;
   }
 }
