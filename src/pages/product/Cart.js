@@ -37,6 +37,12 @@ export default function Cart() {
     const total = cart.reduce((prev, { product, selt, count }) => {
         return prev + (selt ? product.priceGoldAlt : product.priceRetailAlt) * count
     }, 0)
+    const Buy = id => {
+        if (window.confirm("Вы купити этот товар")) {
+            const index = cart.findIndex(item => item.id !== id)
+            setCart([...cart.slice(0, index), ...cart.slice(index+1)])
+        }
+    }
     return (
         <Fragment>
             <div className="product">
@@ -113,7 +119,9 @@ export default function Cart() {
                                 </div>
                                 <Link>
                                     <span className='product_btn btn-cart'>
-                                        <span>Купить</span>
+                                        <Link to='/cart' onClick={Buy}>
+                                            <span>Купить</span>
+                                        </Link>
                                     </span>
                                 </Link>
                             </div>
