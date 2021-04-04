@@ -455,7 +455,9 @@
     &_wrapper {
       position: absolute;
       top: 30px;
-      left: 70px;
+      right: 10px;
+      display: table;
+      width: 100%;
     }
   }
 }
